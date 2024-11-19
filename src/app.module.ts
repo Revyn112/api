@@ -25,8 +25,10 @@ import { VatsimService } from './utilities/vatsim.service';
 import { AtcService } from './atc/atc.service';
 import { IvaoService } from './utilities/ivao.service';
 import { GnssModule } from './gnss/gnss.module';
-import { CpdlcController } from './cpdlc/cpdlc.controller';
-import { CpdlcService } from './cpdlc/cpdlc.service';
+import { HoppieController } from './cpdlc/hoppie.controller';
+import { HoppieService } from './cpdlc/hoppie.service';
+import { SayIntentionsController } from './cpdlc/sayintentions.controller';
+import { SayIntentionsService } from './cpdlc/sayintentions.service';
 import { NotFoundExceptionFilter } from './utilities/not-found.filter';
 
 @Module({
@@ -124,14 +126,15 @@ import { NotFoundExceptionFilter } from './utilities/not-found.filter';
         AtisController,
         TafController,
         AtcController,
-        CpdlcController,
+        HoppieController,
+        SayIntentionsController,
     ],
     providers: [
         {
             provide: APP_FILTER,
             useClass: NotFoundExceptionFilter,
         },
-        MetarService, AtisService, TafService, VatsimService, IvaoService, AtcService, CpdlcService],
+        MetarService, AtisService, TafService, VatsimService, IvaoService, AtcService, HoppieService, SayIntentionsService],
 })
 export class AppModule {
 }

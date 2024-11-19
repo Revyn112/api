@@ -9,15 +9,15 @@ import { CacheService } from '../cache/cache.service';
 import { CpdlcMessageDto } from './dto/cpdlc-message.dto';
 
 @Injectable()
-export class CpdlcService {
-  private readonly logger = new Logger(CpdlcService.name);
+export class HoppieService {
+  private readonly logger = new Logger(HoppieService.name);
 
   constructor(private http: HttpService,
               private readonly cache: CacheService) {
   }
 
   async getData(dto: CpdlcMessageDto): Promise<Cpdlc> {
-      const packet = `${dto.packet !== undefined ? `&packet=${encodeURIComponent(dto.packet)}`: ''}`;
+      const packet = `${dto.packet !== undefined ? `&packet=${encodeURIComponent(dto.packet)}` : ''}`;
       return this.http.get<string>(`http://www.hoppie.nl/acars/system/connect.html?logon=${dto.logon}&from=${dto.from}&to=${dto.to}&type=${dto.type}${packet}`)
           .pipe(
               map((response) => {

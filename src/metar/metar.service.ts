@@ -130,7 +130,7 @@ export class MetarService {
                   return ({
                       source: 'AviationWeather',
                       icao,
-                      metar: metars.find((x) => x.startsWith(icao)).toUpperCase()
+                      metar: metars.find((x) => x.startsWith(icao)).toUpperCase(),
                   });
               }),
               catchError(

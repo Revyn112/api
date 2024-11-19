@@ -5,14 +5,14 @@ import {
     ApiNotFoundResponse,
     ApiTags,
 } from '@nestjs/swagger';
-import { CpdlcService } from './cpdlc.service';
+import { HoppieService } from './hoppie.service';
 import { CpdlcMessageDto } from './dto/cpdlc-message.dto';
 import { Cpdlc } from './cpdlc.class';
 
-@ApiTags('HOPPIE')
+@ApiTags('CPDLC')
 @Controller('api/v1/hoppie')
-export class CpdlcController {
-    constructor(private cpdlc: CpdlcService) {
+export class HoppieController {
+    constructor(private hoppieService: HoppieService) {
     }
 
     @Post()
@@ -20,6 +20,6 @@ export class CpdlcController {
     @ApiCreatedResponse({ description: 'The message could be addressed', type: Cpdlc })
     @ApiNotFoundResponse({ description: 'The sender or recipient flight number could not be found' })
     async requestData(@Body() body: CpdlcMessageDto): Promise<Cpdlc> {
-        return this.cpdlc.getData(body);
+        return this.hoppieService.getData(body);
     }
 }
